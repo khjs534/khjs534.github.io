@@ -3,3 +3,27 @@ body {
   background-color: #C0C0C0;
 }
 
+ .navbar {
+ 	font-family: Helvetica;
+ 	background-color: #7575a3;
+ 	font-color: white;
+ 	font-size: 1.3em;
+ 	position: fixed;
+ 	width: 100%;
+ 	top: 0px;
+  right: 0px;
+ }
+
+.navselect {
+	padding-right: 15px;
+	padding-left: 15px;
+	border-right: 3px solid black;
+}
+
+.navselect:last-of-type {
+  border-right: none;
+}
+
+h1 {
+	margin-top: 25px;
+}

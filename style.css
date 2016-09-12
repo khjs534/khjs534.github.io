@@ -1,18 +1,31 @@
 /** style sheet for personal website **/ 
 
 /** To-do list
+Todo
+		Completed
+
 		Padding and border added to at least one element
 		Margin added to at least one element
 		At least one centered element (a footer message can be nice for this)
-A background image on at least one element
+		A background image on at least one element
 		A different font on at least one element
 		A few elements styled using a class
 		A different color for visited links
-An element styled with an ID
+		An element styled with an ID
+Add media query
 **/
 
 body {
   background-color: #C0C0C0;
+  text-align: center;
+}
+
+ul {
+	font-size:15px;
+}
+
+#background-image {
+	background-image: url("background.jpg");
 }
 
 #container {
@@ -20,6 +33,9 @@ body {
   border-radius : 10px;
   padding: 10px;
   background-color: #ccffcc;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
 }
 
  .navbar {
@@ -31,6 +47,7 @@ body {
  	width: 100%;
  	top: 0px;
   right: 0px;
+  text-align: center;
  }
 
 .navselect {
@@ -61,4 +78,8 @@ div ul {
 	margin-left: 10%;
 	margin-right: 10%;
 	border: 25px;
+}
+
+img {
+	border-radius: 10px;
 }

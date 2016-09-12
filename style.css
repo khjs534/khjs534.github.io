@@ -1,6 +1,25 @@
 /** style sheet for personal website **/ 
+
+/** To-do list
+		Padding and border added to at least one element
+		Margin added to at least one element
+		At least one centered element (a footer message can be nice for this)
+A background image on at least one element
+		A different font on at least one element
+		A few elements styled using a class
+		A different color for visited links
+An element styled with an ID
+**/
+
 body {
   background-color: #C0C0C0;
+}
+
+#container {
+  border: 20px;
+  border-radius : 10px;
+  padding: 10px;
+  background-color: #ccffcc;
 }
 
  .navbar {
@@ -26,4 +45,20 @@ body {
 
 h1 {
 	margin-top: 25px;
+}
+
+div p {
+	margin-left: 10%;
+	margin-right: 10%;
+	border: 25px;
+	border-radius: 5px;
+	padding: 10px;
+	background-color: #99c2ff;
+
+}
+
+div ul {
+	margin-left: 10%;
+	margin-right: 10%;
+	border: 25px;
 }

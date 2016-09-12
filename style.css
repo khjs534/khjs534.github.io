@@ -26,6 +26,8 @@ ul {
 
 #background-image {
 	background-image: url("background.jpg");
+	background-repeat: no-repeat;
+
 }
 
 #container {
@@ -80,6 +82,14 @@ div ul {
 	border: 25px;
 }
 
-img {
+#responsive-img {
 	border-radius: 10px;
+	width: 30%;
+  height: 30%;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+  	font-size: 1.2em;	
+  }
 }

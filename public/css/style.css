@@ -1,4 +1,4 @@
-/** style sheet for personal website **/ 
+/** style sheet for personal website **/
 
 /** To-do list
 Todo
@@ -25,7 +25,7 @@ ul {
 }
 
 #background-image {
-	background-image: url("background.jpg");
+	background-image: url("public/assets/background.jpg");
 	background-repeat: no-repeat;
 
 }
@@ -90,6 +90,6 @@ div ul {
 
 @media screen and (max-width: 768px) {
   body {
-  	font-size: 1.2em;	
+  	font-size: 1.2em;
   }
 }

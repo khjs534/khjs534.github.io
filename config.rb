@@ -6,7 +6,8 @@ activate :autoprefixer do |prefix|
 end
 
 activate :blog do |blog|
-  # set options on blog
+  blog.tag_template = "tag.html"
+  blog.calendar_template = "calendar.html"
 end
 
 # Layouts

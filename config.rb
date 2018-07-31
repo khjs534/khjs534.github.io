@@ -10,6 +10,9 @@ activate :blog do |blog|
   blog.calendar_template = "calendar.html"
 end
 
+configure :development do
+  activate :livereload
+end
 # Layouts
 # https://middlemanapp.com/basics/layouts/
 

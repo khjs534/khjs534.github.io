@@ -1,0 +1,23 @@
+.project-preview {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid $base-border-color;
+  @include clearfix;
+
+  div.image {
+    @include grid-column(4 of 12);
+  }
+
+  div.description {
+    @include grid-column(8 of 12);
+  }
+
+  h1 {
+    font-size: 1.2em;
+  }
+
+  p {
+    font-size: .8em;
+    font-style: italic;
+  }
+}

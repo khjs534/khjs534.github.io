@@ -3,6 +3,14 @@
 @import "bourbon/bourbon";
 @import "base/base";
 @import "neat/neat";
+@import "partials/layout";
+@import "partials/nav";
+@import "partials/aside";
+@import "partials/footer";
+@import "partials/article";
+@import "partials/project";
+@import "partials/about";
+@import "partials/blogpost";
 
 
 .container {

@@ -4,25 +4,31 @@
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>My ~ Cool ~ Space Blog</title>
+    <title>My Portfolio Blog</title>
     <%= stylesheet_link_tag "main" %>
   </head>
   <body>
     <main role="main" class="container">
-      <aside class="side-nav">
-        <h1><%= link_to "My Blog", "/"%></h1>
-        <p>Join me on a journey through space and time</p>
+      <%= partial "partials/nav" %>
+      <div>
+        <aside class="side-nav">
+          <h1><%= link_to "My Blog", "/"%></h1>
+          <p>Join me on a journey through space and time</p>
 
-        <ul>
-          <% blog.tags.each do |tag, articles| %>
-            <li><%= link_to "#{tag} (#{articles.size})", tag_path(tag) %></li>
-          <% end %>
-        </ul>
+          <ul>
+            <% blog.tags.each do |tag, articles| %>
+              <li><%= link_to "#{tag} (#{articles.size})", tag_path(tag) %></li>
+            <% end %>
+          </ul>
 
-      </aside>
-      <section class="post-container">
-        <%= yield %>
-      </section>
+        </aside>
+        <section class="post-container">
+          <%= yield %>
+        </section>
+      </div>
+      <%= partial "partials/footer" %>
     </main>
   </body>
 </html>
+
+

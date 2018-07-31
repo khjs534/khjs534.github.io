@@ -18,3 +18,6 @@ gem 'neat'
 
 # XML for feed.xml.builder
 gem "builder", "~> 3.0"
+
+# Nokogiri for Blog Summaries
+gem 'nokogiri'

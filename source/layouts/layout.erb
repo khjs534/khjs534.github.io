@@ -1,16 +1,28 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Use the title from a page's frontmatter if it has one -->
-    <title><%= current_page.data.title || "Middleman" %></title>
-    <%= stylesheet_link_tag "site" %>
-    <%= javascript_include_tag "site" %>
+    <title>My ~ Cool ~ Space Blog</title>
+    <%= stylesheet_link_tag "main" %>
   </head>
   <body>
-    <%= yield %>
+    <main role="main" class="container">
+      <aside class="side-nav">
+        <h1><%= link_to "My Blog", "/"%></h1>
+        <p>Join me on a journey through space and time</p>
+
+        <ul>
+          <% blog.tags.each do |tag, articles| %>
+            <li><%= link_to "#{tag} (#{articles.size})", tag_path(tag) %></li>
+          <% end %>
+        </ul>
+
+      </aside>
+      <section class="post-container">
+        <%= yield %>
+      </section>
+    </main>
   </body>
 </html>

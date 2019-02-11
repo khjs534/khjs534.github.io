@@ -2,10 +2,12 @@
 
 title: Safebox: Experiments in IoT
 date: 2019-02-11 15:48 UTC
-tags:
+tags: dbc
 
 ---
 ##Safebox
+
+<img src="/images/safebox.jpg" alt="Safebox" width="200px"/>
 
 In December of 2016 I was coming close to graduating from Dev Bootcamp and needed to pitch a final project to create with a few of my cohorts. The media in Chicago at the time was feverishly reporting on package theft due to the holiday season picking up. For my final project in Dev Bootcamp I wanted to incorporate parts of my electrical engineering background with what i had learned in DBC. I came up with an idea to create a proof of concept box that would be put on your porch or in the a mail room that would allow the user to control the opening and closing of this box. I pitched the idea and as a result became team lead for my project.
 
@@ -24,5 +26,13 @@ I looked into using the Raspberry Pi. It had a more versatile version of linux r
 For our software options we had found that we would need to use nginx to start a local server and as a start we wanted to use NAMEOFCOMPANY (formally known as twillio) to send and receive SMS to control the device.
 
 ###Challenges
+//expand on these
+* Learning Python
+* third party api integration
+* hardware i/o integration
+* wifi connectivity
+* presentation woes
 
 ###Conclusion
+//expand
+* wrap up

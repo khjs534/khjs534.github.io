@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>My Portfolio Blog</title>
+    <link href="/stylesheets/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <main role="main" class="container">
+      <nav>
+  <ul>
+    <li>
+      <a href="/" class="blog-title">Sean Kung</a>
+      <span>
+        <a href="/about.html" class="about">About</a>
+        <a href="/blog.html" class="blog">Blog</a>
+      </span>
+    </li>
+  </ul>
+</nav>
+
+      <div>
+        <section class="post-container">
+          <h1 id="gridsome-and-then-some">Gridsome and then some</h1>
+
+<p>As part of my learning Vue I thought it would be a good idea to try and rebuild my blog in Vue. There are several static site generators for Vue, the ones I looked at were Nuxt, VuePress, and Gridsome. I chose to use Gridsome because it had GraphQL integration and that was another tool that I wanted to learn about so it became a dual purpose exercise</p>
+
+<p>I started off by installing Gridsome</p>
+
+<p><code>
+npm i --global @gridsome/cli
+</code></p>
+
+<p>Take extra care to check that you have all the necessary dependencies installed I kepted running into dependency errors while trying to install and progress through some Gridsome tutorials.</p>
+
+<p>After installation is complete getting the boilerplate ready is as easy as running</p>
+
+<p><code>
+gridsome create my-project-blog
+cd my-project-blog
+gridsome develop
+</code></p>
+
+<p>Gridsome uses pages and layouts in the folder structure. the <em>Pages</em> are the Vue components as well as the routes created for the blog. <em>pages/Index.vue</em> and <em>pages/About.vue</em> create the <em>/</em> and <em>/about</em> routes respectively.</p>
+
+<p>The layouts is a wrapper for the pages to use, as per the <a href="https://gridsome.org/docs/layouts/">layout docs</a>. Gridsome gives you a Default.vue that the pages/Index.vue uses.</p>
+
+<p>Gridsome cannot process markdown. To easily create blog posts we need to add resources to allow for markdown processing and file management. To do this we run the following command to install source-filesystem and transformer-remark</p>
+
+<p><code>
+npm install --save-dev @gridsome/source-filesystem @gridsome/transformer-remark
+</code></p>
+
+<p>Then we need to update our gridsome.config.js. Add the following to your module.export</p>
+
+<p><code>
+transformers: {
+    remark: {}
+  },
+  plugins: [
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        path: 'blog/**/*.md',
+        typeName: 'Post',
+        route: '/blog/:slug'
+      }
+    }
+  ]
+</code></p>
+
+<p>By adding these configurations we can create a Post.vue file in templates that will now generate a /blog/ route where the slug in our markdown file will be the route for the post.</p>
+
+<p>Next we create a Post.vue file and add the following to the file:</p>
+
+<p>```</p>
+<template>
+  <Layout>
+    <div v-html="$page.post.content" />
+  </Layout>
+</template>
+
+<page-query>
+query Post ($path: String!) {
+  post: post (path: $path) {
+    title
+    content
+  }
+}
+</page-query>
+
+<script>
+export default {
+  metaInfo() {
+    return {
+      title: this.$page.post.title
+    };
+  }
+};
+</script>
+
+<p>```</p>
+
+<p>Somethings to take note of is the page-query tag in the file. This is source-filesystem. It creates a GraphQL layer for gridsome to access data and fill our posts. We can check the GraphQL queries on our server by looking at <a href="http://localhost:8080/___explore">http://localhost:8080/___explore</a></p>
+
+<p>Then we can create some blog posts in /blog/ and find these posts by checking /blog/:slug</p>
+
+<p>Checkout the repository <a href="https://github.com/khjs534/my-vue-blog">here</a>.</p>
+
+<p>For more information on creating a Gridsome blog please refer to the references I found below</p>
+
+<p><a href="https://alligator.io/vuejs/gridsome-blog/">https://alligator.io/vuejs/gridsome-blog/</a></p>
+
+<p><a href="https://alligator.io/vuejs/gridsome-list-posts/">https://alligator.io/vuejs/gridsome-list-posts/</a></p>
+
+<p><a href="https://lobotuerto.com/blog/quickstart-guide-for-a-new-gridsome-project/#add-vuetify-support">https://lobotuerto.com/blog/quickstart-guide-for-a-new-gridsome-project/#add-vuetify-support</a></p>
+
+
+        </section>
+      </div>
+      <footer>
+  <p>By Sean Kung</p>
+  <p><a href="https://github.com/khjs534/seankung_us">View source</a>
+</footer>
+
+    </main>
+  </body>
+</html>
+
+

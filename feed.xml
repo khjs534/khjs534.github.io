@@ -5,16 +5,157 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2018-07-29T19:00:00-05:00</updated>
+  <updated>2019-02-19T14:25:00-06:00</updated>
   <author>
     <name>Blog Author</name>
   </author>
   <entry>
+    <title>gridsome-blog</title>
+    <link rel="alternate" href="http://blog.url.com/2019/02/19/gridsome-blog.html"/>
+    <id>http://blog.url.com/2019/02/19/gridsome-blog.html</id>
+    <published>2019-02-19T14:25:00-06:00</published>
+    <updated>2019-02-19T14:30:00-06:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h1 id="gridsome-and-then-some"&gt;Gridsome and then some&lt;/h1&gt;
+
+&lt;p&gt;As part of my learning Vue I thought it would be a good idea to try and rebuild my blog in Vue. There are several static site generators for Vue, the ones I looked at were Nuxt, VuePress, and Gridsome. I chose to use Gridsome because it had GraphQL integration and that was another tool that I wanted to learn about so it became a dual purpose exercise&lt;/p&gt;
+
+&lt;p&gt;I started off by installing Gridsome&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+npm i --global @gridsome/cli
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Take extra care to check that you have all the necessary dependencies installed I kepted running into dependency errors while trying to install and progress through some Gridsome tutorials.&lt;/p&gt;
+
+&lt;p&gt;After installation is complete getting the boilerplate ready is as easy as running&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+gridsome create my-project-blog
+cd my-project-blog
+gridsome develop
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Gridsome uses pages and layouts in the folder structure. the &lt;em&gt;Pages&lt;/em&gt; are the Vue components as well as the routes created for the blog. &lt;em&gt;pages/Index.vue&lt;/em&gt; and &lt;em&gt;pages/About.vue&lt;/em&gt; create the &lt;em&gt;/&lt;/em&gt; and &lt;em&gt;/about&lt;/em&gt; routes respectively.&lt;/p&gt;
+
+&lt;p&gt;The layouts is a wrapper for the pages to use, as per the &lt;a href="https://gridsome.org/docs/layouts/"&gt;layout docs&lt;/a&gt;. Gridsome gives you a Default.vue that the pages/Index.vue uses.&lt;/p&gt;
+
+&lt;p&gt;Gridsome cannot process markdown. To easily create blog posts we need to add resources to allow for markdown processing and file management. To do this we run the following command to install source-filesystem and transformer-remark&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+npm install --save-dev @gridsome/source-filesystem @gridsome/transformer-remark
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Then we need to update our gridsome.config.js. Add the following to your module.export&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+transformers: {
+    remark: {}
+  },
+  plugins: [
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        path: 'blog/**/*.md',
+        typeName: 'Post',
+        route: '/blog/:slug'
+      }
+    }
+  ]
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;By adding these configurations we can create a Post.vue file in templates that will now generate a /blog/ route where the slug in our markdown file will be the route for the post.&lt;/p&gt;
+
+&lt;p&gt;Next we create a Post.vue file and add the following to the file:&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+&lt;template&gt;
+  &lt;Layout&gt;
+    &lt;div v-html="$page.post.content" /&gt;
+  &lt;/Layout&gt;
+&lt;/template&gt;
+
+&lt;page-query&gt;
+query Post ($path: String!) {
+  post: post (path: $path) {
+    title
+    content
+  }
+}
+&lt;/page-query&gt;
+
+&lt;script&gt;
+export default {
+  metaInfo() {
+    return {
+      title: this.$page.post.title
+    };
+  }
+};
+&lt;/script&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;p&gt;Somethings to take note of is the page-query tag in the file. This is source-filesystem. It creates a GraphQL layer for gridsome to access data and fill our posts. We can check the GraphQL queries on our server by looking at &lt;a href="http://localhost:8080/___explore"&gt;http://localhost:8080/___explore&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Then we can create some blog posts in /blog/ and find these posts by checking /blog/:slug&lt;/p&gt;
+
+&lt;p&gt;Checkout the repository &lt;a href="https://github.com/khjs534/my-vue-blog"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For more information on creating a Gridsome blog please refer to the references I found below&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://alligator.io/vuejs/gridsome-blog/"&gt;https://alligator.io/vuejs/gridsome-blog/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://alligator.io/vuejs/gridsome-list-posts/"&gt;https://alligator.io/vuejs/gridsome-list-posts/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://lobotuerto.com/blog/quickstart-guide-for-a-new-gridsome-project/#add-vuetify-support"&gt;https://lobotuerto.com/blog/quickstart-guide-for-a-new-gridsome-project/#add-vuetify-support&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title/>
+    <link rel="alternate" href="http://blog.url.com/2019/02/11/safebox-experiments-in-iot.html"/>
+    <id>http://blog.url.com/2019/02/11/safebox-experiments-in-iot.html</id>
+    <published>2019-02-10T18:00:00-06:00</published>
+    <updated>2019-02-19T14:23:12-06:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2 id="safebox"&gt;Safebox&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src="/images/safebox.jpg" alt="Safebox" width="200px" /&gt;&lt;/p&gt;
+
+&lt;p&gt;In December of 2016 I was coming close to graduating from Dev Bootcamp and needed to pitch a final project to create with a few of my cohorts. The media in Chicago at the time was feverishly reporting on package theft due to the holiday season picking up. For my final project in Dev Bootcamp I wanted to incorporate parts of my electrical engineering background with what i had learned in DBC. I came up with an idea to create a proof of concept box that would be put on your porch or in the a mail room that would allow the user to control the opening and closing of this box. I pitched the idea and as a result became team lead for my project.&lt;/p&gt;
+
+&lt;h3 id="intended-goal"&gt;Intended Goal&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Build an interfacing device that could allow a user to open and close a box from a mobile device.&lt;/li&gt;
+  &lt;li&gt;Have the box notify the user when the box was locked by someone delivering a package or an approved user&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="approach"&gt;Approach&lt;/h3&gt;
+
+&lt;p&gt;With many hardware based research and design it is beneficial to be flexible. I divided team work into 3 initial R&amp;amp;D sections. 2 people would research hardware and see which platform would fit our needs better. A third person would research how to create a local server on the platform and what services we would use to communicate with the user.&lt;/p&gt;
+
+&lt;p&gt;We originally thought of using an Arduino Yun that was also came with a light linux shell that ran in parallel with arduino, but the the linux shell approved to be too light weight for our needs. The arduino was our original plan for this project because we had seen &lt;a href="https://www.twilio.com/blog/2016/07/how-to-teach-your-dog-to-text-selfies.html"&gt;another project&lt;/a&gt; that was very successful interfacing between the device and user. Once this teammate found that this device could no longer be used for our project they began looking to figuring out interfacing options. What kind of hardware would we need for a person to physically interface with the device.&lt;/p&gt;
+
+&lt;p&gt;I looked into using the Raspberry Pi. It had a more versatile version of linux runnning and many more options for us in terms of hardware I/O that we could use and integrate into the final project. Additionally they are very commercially available and seemed like the best option as the Arduino had run dry.&lt;/p&gt;
+
+&lt;p&gt;For our software options we had found that we would need to use ngrok to start a local server and as a start we wanted to use Twilio to send and receive SMS to control the device.&lt;/p&gt;
+
+&lt;h3 id="conclusion"&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;For more information you can find the repo &lt;a href="https://github.com/khjs534/safebox"&gt;here&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
     <title>Middleman</title>
-    <link rel="alternate" href="http://blog.url.com/2018/07/30/test-article.html"/>
-    <id>http://blog.url.com/2018/07/30/test-article.html</id>
+    <link rel="alternate" href="http://blog.url.com/2018/07/30/middleman.html"/>
+    <id>http://blog.url.com/2018/07/30/middleman.html</id>
     <published>2018-07-29T19:00:00-05:00</published>
-    <updated>2018-07-31T18:25:49-05:00</updated>
+    <updated>2019-02-19T14:23:12-06:00</updated>
     <author>
       <name>Article Author</name>
     </author>
